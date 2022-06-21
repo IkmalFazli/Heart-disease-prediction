@@ -61,13 +61,13 @@ Hence we save the model for deployment.
 To further check the model we test model using our test data send. Below is the 
 classification report and confusion matrix:
 
-![model_acc](classification_report.png)
+![class_report](classification_report.png)
 
 
-![model_acc](confusion_matrix.png)
+![conf_mat](confusion_matrix.png)
 
 # Web apps
 To check on my web app, you can download file app.py and run using streamlit. Below is the screenshot of my web app:
 
-![model_acc](webapp.png)
+![webapp](webapp.png)
 
