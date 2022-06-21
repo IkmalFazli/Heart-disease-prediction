@@ -8,11 +8,23 @@ Created on Tue Jun 21 10:07:54 2022
 # Commented out IPython magic to ensure Python compatibility.
 # %cd /content/drive/MyDrive/Colab Notebooks
 
-import os
-import pandas as pd
+from sklearn.metrics import classification_report,confusion_matrix
+from sklearn.preprocessing import MinMaxScaler,StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.model_selection import GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.pipeline import Pipeline
 import matplotlib.pyplot as plt
+from sklearn.svm import SVC
 import scipy.stats as ss
+import pandas as pd
 import numpy as np
+import pickle
+import os
 
 def cramers_corrected_stat(confusion_matrix):
     chi2 = ss.chi2_contingency(confusion_matrix)[0]
@@ -30,6 +42,7 @@ Static
 """
 
 DATA_PATH = os.path.join(os.getcwd(),'heart.csv')
+BEST_MODEL_PATH = os.path.join(os.getcwd(),'best_model.pkl')
 
 """# STEP 1) DATA LOADING"""
 
@@ -77,8 +90,6 @@ df.info()
 """# STEP 4) FEATURE SELECTION
 """
 
-from sklearn.linear_model import LogisticRegression
-
 for i in Continuous:
     LR = LogisticRegression(solver='liblinear')
     LR.fit(np.expand_dims(df[i],axis=-1),df['output'])
@@ -105,13 +116,6 @@ y = df['output']
 X_train,X_test,y_train,y_test = train_test_split(x,y,
                                                  test_size=0.3,
                                                  random_state=238)
-
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import MinMaxScaler,StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
 
 #Steps for Standard scaler
 step_LR_ss = Pipeline([('Standard Scaler',StandardScaler()),
@@ -189,8 +193,6 @@ print('The best modeling and scaling approach for Heart.csv train Dataset will b
     scaler has the highest score which is 0.835. Hence we pick model to best 
     tested further to find the best parameter"""
 
-from sklearn.model_selection import GridSearchCV
-
 step_LR_mms = Pipeline([('Min-Max Scaler',MinMaxScaler()),
                        ('classifier',LogisticRegression())])
 
@@ -206,8 +208,6 @@ print(best_model.best_params_)
 
 """ As the result for gridsearch parameter, clearly the default parameter is 
     the best parameter for this case. Hence we save the model for deployment"""
-    
-BEST_MODEL_PATH = os.path.join(os.getcwd(),'best_model.pkl')
 
 best_model = Pipeline([('Min-Max Scaler',MinMaxScaler()),
                        ('classifier',LogisticRegression(solver='liblinear'))])
@@ -215,14 +215,8 @@ best_model = Pipeline([('Min-Max Scaler',MinMaxScaler()),
 
 best_model.fit(X_train,y_train)
 
-import pickle
-
 with open(BEST_MODEL_PATH,'wb') as file:
   pickle.dump(best_model,file)
-  
-from sklearn.metrics import classification_report,confusion_matrix
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import ConfusionMatrixDisplay
 
 y_true = y_test
 y_predict = best_model.predict(X_test)
