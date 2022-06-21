@@ -47,10 +47,10 @@ st.markdown(""" <style> .font {font-size:42px ;
             text-align: center;
             } </style> """, unsafe_allow_html=True)
 
-st.markdown('<p class="font">DO WE ALL REALLY SAFE FROM CARDIOVASCULAR DISEASE???', unsafe_allow_html=True)
+st.markdown('<p class="font">DO WE ALL REALLY SAFE FROM HEART DISEASE???', unsafe_allow_html=True)
 
 st.write('This is an app to predict if a person has the probability of getting \
-         cardiovascular disease')
+         heart disease')
          
 with st.form('my_form'):
 #'age','trtbps','chol','thalachh','oldpeak','cp','thall'                                     
