@@ -38,11 +38,36 @@ Down below is the features of the data :
 12) caa: number of major vessels (0-3)
 13) thall : thalassemia [0 = null,1 = fixed defect,2 = normal,3 = reversable defect]
 14) output: diagnosis of heart disease (angiographic disease status)
+     
      0: < 50% diameter narrowing. less chance of heart disease
+     
      1: > 50% diameter narrowing. more chance of heart disease
 
 # Results
 This studies involve Logistic Regression, Random Forest, Decission Tree, KNeighbors and SVC models.
 The data set were split into train and test data before the train data were use to train all the model.
 Then the score of the model were compared such below:
+
+
 ![model_acc](model_accuracy.png) 
+
+
+Referring to the result it is clear that Logistic Regression with MinMax 
+scaler has the highest score which is 0.835. Hence we pick model to best 
+tested further to find the best parameter.As the result for gridsearch parameter, 
+we found out that the default parameter is the best parameter for this case. 
+Hence we save the model for deployment.
+
+To further check the model we test model using our test data send. Below is the 
+classification report and confusion matrix:
+
+![model_acc](classification_report.png)
+
+
+![model_acc](confusion_matrix.png)
+
+# Web apps
+To check on my web app, you can download file app.py and run using streamlit. Below is the screenshot of my web app:
+
+![model_acc](webapp.png)
+
