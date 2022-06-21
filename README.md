@@ -73,5 +73,5 @@ To check on my web app, you can download file app.py and run using streamlit. Be
 
 # Credit
 
-1) Data sets : [Here]('https://www.kaggle.com/rashikrahmanpritom/heart-attack-analysis-prediction-dataset')
-2) Webapps Image : [Here]('https://images.news18.com/ibnlive/uploads/2022/01/heart-health-16430292883x2.jpg?impolicy=website&width=510&height=356')
+1) Data sets : [Here](https://www.kaggle.com/rashikrahmanpritom/heart-attack-analysis-prediction-dataset)
+2) Webapps Image : [Here](https://images.news18.com/ibnlive/uploads/2022/01/heart-health-16430292883x2.jpg?impolicy=website&width=510&height=356)
