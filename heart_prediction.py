@@ -5,6 +5,9 @@ Created on Tue Jun 21 10:07:54 2022
 @author: Si Kemal
 """
 
+# Commented out IPython magic to ensure Python compatibility.
+# %cd /content/drive/MyDrive/Colab Notebooks
+
 from sklearn.metrics import classification_report,confusion_matrix
 from sklearn.preprocessing import MinMaxScaler,StandardScaler
 from sklearn.linear_model import LogisticRegression
