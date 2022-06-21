@@ -41,7 +41,7 @@ def cramers_corrected_stat(confusion_matrix):
 Static
 """
 
-DATA_PATH = os.path.join(os.getcwd(),'heart.csv')
+DATA_PATH = os.path.join(os.getcwd(),'data','heart.csv')
 BEST_MODEL_PATH = os.path.join(os.getcwd(),'best_model.pkl')
 
 """# STEP 1) DATA LOADING"""
